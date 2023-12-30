@@ -1,7 +1,6 @@
 import java.io.File
 
 class Advent2308 {
-    //private val instructionsRegex = """[LR]+""".toRegex()
     private val nodeRegex =
         """^((?<instructions>[LR]+)|(?<name>[A-Z]{3}) = \((?<left>[A-Z]{3}), (?<right>[A-Z]{3})\))$""".toRegex()
 
@@ -15,10 +14,8 @@ class Advent2308 {
             val matches = nodeRegex.find(line)
             if (matches != null) {
                 if (matches.groups["name"] != null) {
-                    nodes.put(
-                        matches.groups["name"]!!.value,
+                    nodes[matches.groups["name"]!!.value] =
                         Node(matches.groups["left"]!!.value, matches.groups["right"]!!.value)
-                    )
                 } else {
                     instructions = matches.value.toCharArray()
                 }
@@ -28,7 +25,7 @@ class Advent2308 {
         var currentNode = "AAA"
         var steps = 0
 
-        while (!currentNode.equals("ZZZ")) {
+        while (currentNode != "ZZZ") {
             currentNode = when (instructions[steps % instructions.size]) {
                 'L' -> nodes[currentNode]!!.left
                 else -> nodes[currentNode]!!.right
