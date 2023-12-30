@@ -1,6 +1,6 @@
 import java.io.File
 
-class Advent2307 {
+class Advent230701 {
     private val order = listOf('2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
 
     enum class Type {
