@@ -25,4 +25,14 @@ class Advent2309 {
 
         return sum
     }
+
+    fun getExtrapolatedHistorySum(filename: String): Long {
+        var sum = 0L
+        File(this::class.java.getResource(filename)!!.file).forEachLine { line ->
+            val sequence = line.split(" ").map { it.toLong() }.reversed().toList()
+            sum += extrapolateNextValue(sequence)
+        }
+
+        return sum
+    }
 }
